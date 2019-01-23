@@ -3,7 +3,7 @@ package infra
 import (
 	mgo "gopkg.in/mgo.v2"
 
-	"github.com/hirokisan/clean/interface/database"
+	"github.com/hirokisan/go-sample-clean-architecture/interface/database"
 )
 
 type MongoHandler struct {

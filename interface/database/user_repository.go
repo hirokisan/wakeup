@@ -1,7 +1,7 @@
 package database
 
 import (
-	"github.com/hirokisan/clean/domain"
+	"github.com/hirokisan/go-sample-clean-architecture/domain"
 )
 
 type UserRepository struct {

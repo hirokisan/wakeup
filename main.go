@@ -3,8 +3,8 @@ package main
 import (
 	"fmt"
 
-	"github.com/hirokisan/clean/domain"
-	"github.com/hirokisan/clean/infra"
+	"github.com/hirokisan/go-sample-clean-architecture/domain"
+	"github.com/hirokisan/go-sample-clean-architecture/infra"
 )
 
 func main() {
