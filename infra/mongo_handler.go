@@ -33,7 +33,7 @@ func (m *MongoHandler) Insert(dest interface{}) error {
 }
 
 func (m *MongoHandler) FindAll(res interface{}) error {
-	err := m.Session.DB(m.Db).C(m.Collection).Find(nil).All(&res)
+	err := m.Session.DB(m.Db).C(m.Collection).Find(nil).All(res)
 	if err != nil {
 		return err
 	}
