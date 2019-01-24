@@ -4,11 +4,11 @@ import (
 	"fmt"
 
 	"github.com/hirokisan/go-sample-clean-architecture/domain"
-	"github.com/hirokisan/go-sample-clean-architecture/infra"
+	"github.com/hirokisan/go-sample-clean-architecture/infra/mongo"
 )
 
 func main() {
-	handler := infra.NewMongoHandler("localhost:27017", "local", "user")
+	handler := mongo.NewHandler("localhost:27017", "local", "user")
 	user := new(domain.User)
 	user.ID = int(1)
 	user.FirstName = "kenta"
