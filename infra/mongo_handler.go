@@ -12,8 +12,8 @@ type MongoHandler struct {
 	Collection string
 }
 
-func NewMongoHandler(db string, col string) database.MongoHandler {
-	session, err := mgo.Dial("localhost:27017")
+func NewMongoHandler(url string, db string, col string) database.MongoHandler {
+	session, err := mgo.Dial(url)
 	if err != nil {
 		panic(err)
 	}

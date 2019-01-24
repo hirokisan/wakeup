@@ -8,7 +8,7 @@ import (
 )
 
 func main() {
-	handler := infra.NewMongoHandler("local", "user")
+	handler := infra.NewMongoHandler("localhost:27017", "local", "user")
 	user := new(domain.User)
 	user.ID = int(1)
 	user.FirstName = "kenta"
