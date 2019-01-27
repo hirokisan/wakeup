@@ -8,10 +8,18 @@ type UserInteractor struct {
 	UserRepository UserRepository
 }
 
-func (i *UserInteractor) Add(u domain.User) error {
-	_, err := i.UserRepository.Store(u)
+func (i *UserInteractor) Add(u *domain.User) error {
+	err := i.UserRepository.Store(u)
+	if err != nil {
+		return err
+	}
+	return nil
 }
 
-func (i *UserInteractor) Users(domain.Users) (domain.Users, error) {
-	_, err := i.UserRepository.FindAll(domain.Users)
+func (i *UserInteractor) Users(users *domain.Users) error {
+	err := i.UserRepository.Users(users)
+	if err != nil {
+		return err
+	}
+	return nil
 }

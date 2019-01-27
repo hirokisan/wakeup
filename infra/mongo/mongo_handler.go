@@ -7,12 +7,11 @@ import (
 )
 
 type Handler struct {
-	Session    *mgo.Session
-	Db         string
-	Collection string
+	Session *mgo.Session
+	Db      string
 }
 
-func NewHandler(url string, db string, col string) database.MongoHandler {
+func NewHandler(url string, db string) database.MongoHandler {
 	session, err := mgo.Dial(url)
 	if err != nil {
 		panic(err)
@@ -20,22 +19,9 @@ func NewHandler(url string, db string, col string) database.MongoHandler {
 	Handler := new(Handler)
 	Handler.Session = session
 	Handler.Db = db
-	Handler.Collection = col
 	return Handler
 }
 
-func (m *Handler) Insert(dest interface{}) error {
-	err := m.Session.DB(m.Db).C(m.Collection).Insert(dest)
-	if err != nil {
-		return err
-	}
-	return nil
-}
-
-func (m *Handler) FindAll(res interface{}) error {
-	err := m.Session.DB(m.Db).C(m.Collection).Find(nil).All(res)
-	if err != nil {
-		return err
-	}
-	return nil
+func (m *Handler) Col(col string) database.MongoCollectionHandler {
+	return &CollectionHandler{m.Session.DB(m.Db).C(col)}
 }

@@ -5,6 +5,6 @@ import (
 )
 
 type UserRepository interface {
-	Store(domain.User) error
-	FindAll(domain.Users) (domain.Users, error)
+	Store(*domain.User) error
+	Users(*domain.Users) error
 }
