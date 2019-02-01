@@ -4,22 +4,30 @@ import (
 	"fmt"
 
 	"github.com/hirokisan/go-sample-clean-architecture/domain"
-	"github.com/hirokisan/go-sample-clean-architecture/infra"
+	"github.com/hirokisan/go-sample-clean-architecture/infra/mongo"
+	"github.com/hirokisan/go-sample-clean-architecture/interface/database"
+	"github.com/hirokisan/go-sample-clean-architecture/usecase"
 )
 
 func main() {
-	handler := infra.NewMongoHandler("local", "user")
-	user := new(domain.User)
-	user.ID = int(1)
-	user.FirstName = "kenta"
-	user.LastName = "yamada"
-	err := handler.Insert(user)
+	handler := mongo.NewHandler("localhost:27017", "local")
+	userHandler := &usecase.UserInteractor{
+		UserRepository: &database.UserRepository{
+			MongoCollectionHandler: handler.Col("user"),
+		},
+	}
+	user := &domain.User{
+		ID:        1,
+		FirstName: "kenta",
+		LastName:  "yamada",
+	}
+	err := userHandler.Add(user)
 	if err != nil {
 		panic(err)
 	}
 
 	var res domain.Users
-	err = handler.FindAll(&res)
+	err = userHandler.Users(&res)
 	if err != nil {
 		panic(err)
 	}
