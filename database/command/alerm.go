@@ -11,7 +11,7 @@ func NewAlermCommand() *AlermCommand {
 }
 
 // Stop : アラームを停止する
-func (c *AlermCommand) Stop() error {
+func (c *AlermCommand) Stop(ID string) error {
 	// TODO : implement
 	return nil
 }

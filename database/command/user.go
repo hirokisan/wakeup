@@ -11,7 +11,7 @@ func NewUserCommand() *UserCommand {
 }
 
 // OpenEye : 目を開ける
-func (c *UserCommand) OpenEye() error {
+func (c *UserCommand) OpenEye(ID string) error {
 	// TODO : ユーザの目を開ける(状態変化)
 	return nil
 }

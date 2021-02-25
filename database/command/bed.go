@@ -11,7 +11,7 @@ func NewBedCommand() *BedCommand {
 }
 
 // Open : 空にする
-func (c *BedCommand) Open() error {
+func (c *BedCommand) Open(ID string) error {
 	// TODO : implement
 	return nil
 }
