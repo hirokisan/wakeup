@@ -1,20 +1,25 @@
 package query
 
-import "github.com/hirokisan/go-sample-clean-architecture/domain"
+import (
+	"github.com/hirokisan/go-sample-clean-architecture/domain"
+	"github.com/hirokisan/go-sample-clean-architecture/store"
+)
 
 // AlermQuery :
 type AlermQuery struct {
-	// store
+	alermStore store.AlermStore
 }
 
 // NewAlermQuery :
-func NewAlermQuery() *AlermQuery {
-	return &AlermQuery{}
+func NewAlermQuery(store store.AlermStore) *AlermQuery {
+	return &AlermQuery{store}
 }
 
 // AlermByUserID :
 func (q *AlermQuery) AlermByUserID(id string) (domain.Alerm, error) {
 	var result domain.Alerm
-	// todo : implement
+	if err := q.alermStore.FindID(id, &result); err != nil {
+		return result, err
+	}
 	return result, nil
 }

@@ -14,13 +14,19 @@ type WakeUpUsecase struct {
 	alermCommand command.AlermCommand
 	bedCommand   command.BedCommand
 
-	alermQuery query.AlermQuery
-	bedQuery   query.BedQuery
+	alermQuery *query.AlermQuery
+	bedQuery   *query.BedQuery
 }
 
 // NewWakeUpUsecase :
-func NewWakeUpUsecase() *WakeUpUsecase {
-	return &WakeUpUsecase{}
+func NewWakeUpUsecase(
+	alermQuery *query.AlermQuery,
+	bedQuery *query.BedQuery,
+) *WakeUpUsecase {
+	return &WakeUpUsecase{
+		alermQuery: alermQuery,
+		bedQuery:   bedQuery,
+	}
 }
 
 // WakeUp : 起床する
