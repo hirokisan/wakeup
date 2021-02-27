@@ -16,9 +16,13 @@ func NewBedQuery(store store.BedStore) *BedQuery {
 }
 
 // BedByUserID :
-func (q *BedQuery) BedByUserID(id string) (domain.Bed, error) {
+func (q *BedQuery) BedByUserID(userID string) (domain.Bed, error) {
 	var result domain.Bed
-	if err := q.bedStore.FindID(id, &result); err != nil {
+	if err := q.bedStore.Find(store.Query{
+		Field:    "userId",
+		Operator: store.RelationalOperatorEqual,
+		Value:    userID,
+	}, &result); err != nil {
 		return result, err
 	}
 	return result, nil

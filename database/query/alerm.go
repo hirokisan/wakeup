@@ -16,9 +16,13 @@ func NewAlermQuery(store store.AlermStore) *AlermQuery {
 }
 
 // AlermByUserID :
-func (q *AlermQuery) AlermByUserID(id string) (domain.Alerm, error) {
+func (q *AlermQuery) AlermByUserID(userID string) (domain.Alerm, error) {
 	var result domain.Alerm
-	if err := q.alermStore.FindID(id, &result); err != nil {
+	if err := q.alermStore.Find(store.Query{
+		Field:    "userId",
+		Operator: store.RelationalOperatorEqual,
+		Value:    userID,
+	}, &result); err != nil {
 		return result, err
 	}
 	return result, nil

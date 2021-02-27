@@ -16,9 +16,14 @@ func (s *MongoStore) AlermStore() *AlermStore {
 	return &AlermStore{s.db.C("alerms")}
 }
 
-// FindID :
-func (s *AlermStore) FindID(id string, result interface{}) error {
-	return s.collection.FindId(id).One(&result)
+// Find :
+func (s *AlermStore) Find(query store.Query, result interface{}) error {
+	cond := bson.M{}
+	// TODO : 汎用的に他のoperatorにも対応できるようにすると良さそう
+	if query.Operator == store.RelationalOperatorEqual {
+		cond[query.Field] = query.Value
+	}
+	return s.collection.Find(cond).One(&result)
 }
 
 // UpdateID :
