@@ -11,7 +11,7 @@ type AlermCommand struct {
 
 // NewAlermCommand :
 func NewAlermCommand(store store.AlermStore) *AlermCommand {
-	return &AlermCommand{}
+	return &AlermCommand{store}
 }
 
 // Stop : アラームを停止する

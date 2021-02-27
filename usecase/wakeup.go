@@ -14,18 +14,24 @@ type WakeUpUsecase struct {
 	alermCommand command.AlermCommand
 	bedCommand   command.BedCommand
 
-	alermQuery *query.AlermQuery
-	bedQuery   *query.BedQuery
+	alermQuery query.AlermQuery
+	bedQuery   query.BedQuery
 }
 
 // NewWakeUpUsecase :
 func NewWakeUpUsecase(
-	alermQuery *query.AlermQuery,
-	bedQuery *query.BedQuery,
+	userCommand command.UserCommand,
+	bedCommand command.BedCommand,
+	alermCommand command.AlermCommand,
+	alermQuery query.AlermQuery,
+	bedQuery query.BedQuery,
 ) *WakeUpUsecase {
 	return &WakeUpUsecase{
-		alermQuery: alermQuery,
-		bedQuery:   bedQuery,
+		userCommand:  userCommand,
+		bedCommand:   bedCommand,
+		alermCommand: alermCommand,
+		alermQuery:   alermQuery,
+		bedQuery:     bedQuery,
 	}
 }
 
