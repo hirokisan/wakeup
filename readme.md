@@ -1,6 +1,3 @@
-# clean architecture with GO
+# 起床
 
-## Memo
-- 外側 > infra > interface > use case > domain > 内側
-
-- 外側のルールを内側に持ち込んではいけない
+アラームを止めて、目を開けて、ベッドをでます
